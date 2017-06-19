@@ -2,21 +2,18 @@
 # Code written by Artur S.
 #
 #
-
 from random import randint
 def diceRoll():
-    #Array to store key for Diceware dictionary
-    key = [str(randint(1, 6)) for i in range(0, 5)]
-    #Random loop to generate key. Five "dice" rolls to obtain one key
-    #for i in range(0, 5):
-    #    i = randint(1, 6)
-    #    key.append(str(i))
-    #String function removes all formating and stores key in the form 12345
-    return str((''.join(map(str, key))))
+    #Array word stores randomly generated number. For loop ensures it is done 5 times to create one word.
+    #Diceware definition says that one word is created by 5 results.
+    word = [str(randint(1, 6)) for i in range(0, 5)]
 
-#This part opens dictionary file (diceware.txt) and loops through it to look for key and its value
-data = diceRoll()
-file = open("diceware.txt", "r")
-for line in file:
-    if data in line:
-        print(line)
+    #String function removes all formating and stores word in the form 12345 required by Diceware
+    return str((''.join(map(str, word))))
+
+#This part gets reult of diceRoll() as variable, opens dictionary file and loops through it.
+words = diceRoll()
+with open("diceware.txt") as file:
+    for line in file:
+        if words in line:
+            print(line)
